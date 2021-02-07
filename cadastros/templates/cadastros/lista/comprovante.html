@@ -1,0 +1,93 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+
+{% block titulo %}
+<title>Lista de comprovante</title>
+
+{% endblock %}
+
+{% block destaque %}
+{% endblock %}
+
+
+
+{% block menuEsquerdo %}
+<div class="col-2 ml-auto ">
+
+</div>
+{% endblock %}
+
+
+{% block conteudo %}
+<div class="container col-8">
+    <h3>{{ titulo }}</h3>
+    <a href="{% url 'cadastrar-comprovante' %}" class="btn btn-primary btn-sm float-right">Cadastrar um novo comprovante</a>
+    <p class="lead">aqui está apresentada todos os comprovantes registrados</p>
+    <hr>
+    <div class="table responsive">
+
+        <table class="table table-striped">
+            <tr>
+                <th>Progressão</th>
+                <th>Atividade</th>
+                <th>Quantidade</th>
+                <th>Data</th>
+                <th>Data final</th>
+                <th>Arquivo</th>
+                <th>Servidor</th>
+                <th></th>
+                
+            </tr>
+            {% for comprovante in object_list %}
+            <tr>
+                <td>{{comprovante.progressao}}</td>
+                <td>{{comprovante.atividade}}</td>
+                <td>{{comprovante.quantidade}}</td>
+                <td>{{comprovante.data}}</td>
+                <td>{{comprovante.data_final}}</td>
+                <th><a href="{{ comprovante.arquivo.url }}">
+                    <i class="fa fa-eye" aria-hidden="true"></i>    
+                    
+                    </a>
+                </th>
+                
+               
+                <td>{{comprovante.usuario}}</td>
+                
+                
+                
+                <td>
+                    <a href="{% url 'editar-comprovante' comprovante.pk %}" class="btn btn-warning btn-sm" title="Editar">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                    <a href="{% url 'deletar-comprovante' comprovante.pk %}" class="btn btn-danger btn-sm" title="Excluir">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+
+            {% empty %}
+            <td colspan="3">Nenhum campo registrado.</td>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block menuDireito %}
+<div class="col-2 mr-auto">
+
+</div>
+{% endblock %}
+
+
+
+
+
+{% block rodape %}
+{% endblock %}

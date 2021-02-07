@@ -1,0 +1,77 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+
+{% block titulo %}
+<title>Lista de Status</title>
+
+{% endblock %}
+
+{% block destaque %}
+{% endblock %}
+
+
+
+{% block menuEsquerdo %}
+<div class="col-2 ml-auto ">
+
+</div>
+{% endblock %}
+
+
+{% block conteudo %}
+<div class="container col-8">
+    <h3>{{ titulo }}</h3>
+    <a href="{% url 'cadastrar-status' %}" class="btn btn-primary btn-sm float-right">Cadastrar um novo status</a>
+    <p class="lead">aqui está apresentada todos os Status registrados</p>
+    <hr>
+    <div class="table responsive">
+
+        <table class="table table-striped">
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Opções</th>
+                <th></th>
+                
+            </tr>
+            {% for status in object_list %}
+            <tr>
+                <td>{{status.nome}}</td>
+                <td>{{status.descricao}}</td>
+                
+                
+                <td>
+                    <a href="{% url 'editar-status' status.pk %}" class="btn btn-warning btn-sm" title="Editar">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                    <a href="{% url 'deletar-status' status.pk %}" class="btn btn-danger btn-sm" title="Excluir">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+
+            {% empty %}
+            <td colspan="3">Nenhum campo registrado.</td>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block menuDireito %}
+<div class="col-2 mr-auto">
+
+</div>
+{% endblock %}
+
+
+
+
+
+{% block rodape %}
+{% endblock %}

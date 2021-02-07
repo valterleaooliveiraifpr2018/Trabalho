@@ -1,0 +1,78 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+
+{% block titulo %}
+<title>Lista de Atividades</title>
+
+{% endblock %}
+
+{% block destaque %}
+{% endblock %}
+
+
+
+{% block menuEsquerdo %}
+<div class="col-2 ml-auto ">
+
+</div>
+{% endblock %}
+
+
+{% block conteudo %}
+<div class="container col-8">
+    <h3>  {{ titulo }}</h3>
+    <a href="{% url 'cadastrar-campus' %}" class="btn btn-primary btn-sm float-right">Cadastrar um novo campus</a>
+    <p class="lead">aqui está apresentada todas os campus registrados</p>
+    <hr>
+    <div class="table responsive">
+
+        <table class="table table-striped">
+            <tr>
+                <th>Cidade</th>
+                <th>Endereço</th>
+                <th>Telefone</th>
+                <th></th>
+                
+            </tr>
+            {% for campus in object_list %}
+            <tr>
+                <td>{{campus.cidade}}</td>
+                <td>{{campus.endereco}}</td>
+                <td>{{campus.telefone}}</td>
+                
+                
+                <td>
+                    <a href="{% url 'editar-campus' campus.pk %}" class="btn btn-warning btn-sm" title="Editar">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                    <a href="{% url 'deletar-campus' campus.pk %}" class="btn btn-danger btn-sm" title="Excluir">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+
+            {% empty %}
+            <td colspan="3">Nenhum campo registrado.</td>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block menuDireito %}
+<div class="col-2 mr-auto">
+
+</div>
+{% endblock %}
+
+
+
+
+
+{% block rodape %}
+{% endblock %}
