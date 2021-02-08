@@ -22,49 +22,56 @@
 {% block conteudo %}
 <div class="container col-8">
     <h3>{{ titulo }}</h3>
-    <a href="{% url 'cadastrar-progressao' %}" class="btn btn-primary btn-sm ml-auto float-right">Cadastrar uma nova progressao</a>
+    <a href="{% url 'cadastrar-progressao' %}" class="btn btn-primary btn-sm ml-auto float-right">Cadastrar uma nova
+        progressao</a>
     <p class="lead">aqui está todas as progressões registradas</p>
     <hr>
     <div class="table responsive">
 
-        <table class="table table-striped">
-            <tr>
-                <!-- <th>#</th> -->
-                <th>Classe</th>
-                <th>Data inicio</th>
-                <th>Data final</th>
-                <th>Observação</th>
-                <th>Servidor</th>
-                <th>Opções</th>
-                <th></th>
-                
-            </tr>
+        <table class="table table-striped" id="tabela-progressao">
+            <thead>
+                <tr>
+                    <!-- <th>#</th> -->
+                    <th>Classe</th>
+                    <th>Data inicio</th>
+                    <th>Data final</th>
+                    <th>Observação</th>
+                    <th>Servidor</th>
+                    <th>Opções</th>
+                    <th></th>
+
+                </tr>
+            </thead>
             {% for progressao in object_list %}
-            <tr>
-                <!-- <td>{{progressao.pk}}</td> -->
-                <td>{{progressao.classe}}</td>
-                <td>{{progressao.data_inicio}}</td>
-                <td>{{progressao.data_final}}</td>
-                <td>{{progressao.observacao}}</td>
-                <td>{{progressao.usuario}}</td>
-                
-                <td>
+            <tbody>
+                <tr>
+                    <!-- <td>{{progressao.pk}}</td> -->
+                    <td>{{progressao.classe}}</td>
+                    <td>{{progressao.data_inicio}}</td>
+                    <td>{{progressao.data_final}}</td>
+                    <td>{{progressao.observacao}}</td>
+                    <td>{{progressao.usuario}}</td>
 
-                        <a href="{% url 'editar-progressao' progressao.pk %}" class="btn btn-warning btn-sm" title="Editar">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>    
+                    <td>
+
+                        <a href="{% url 'editar-progressao' progressao.pk %}" class="btn btn-warning btn-sm"
+                            title="Editar">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
-               
 
-                    <a href="{% url 'deletar-progressao' progressao.pk %}" class="btn btn-danger btn-sm " title="Excluir">
-                        <i class="fa fa-trash" aria-hidden="true"></i>    
-                    </a>
-                </td>
-            </tr>
 
-            {% empty %}
-            <td colspan="3">Nenhum campo registrado.</td>
-            {% endfor %}
+                        <a href="{% url 'deletar-progressao' progressao.pk %}" class="btn btn-danger btn-sm "
+                            title="Excluir">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
 
+                {% empty %}
+                <td colspan="3">Nenhum campo registrado.</td>
+                {% endfor %}
+
+            </tbody>
         </table>
     </div>
 </div>
@@ -84,4 +91,51 @@
 
 
 {% block rodape %}
+{% endblock %}
+
+{% block script %}
+<script>
+
+    // $("seletor").evento(function () {
+    // $("seletor").acao();
+    // });
+    $(document).ready(function () {
+
+        $("#tabela-progressao").DataTable({
+            responsive: true,
+            // "bSort": false,
+            "aaSorting": [],
+            "pageLength": 50,
+            "language": {
+                "decimal": "",
+                "emptyTable": "Sem dados disponíveis",
+                "info": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
+                "infoEmpty": "Mostrando de 0 até 0 de 0 registos",
+                "infoFiltered": "(filtrado de _MAX_ registos no total)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ registos",
+                "loadingRecords": "A carregar dados...",
+                "processing": "A processar...",
+                "search": "Procurar:",
+                "zeroRecords": "Não foram encontrados resultados",
+                "paginate": {
+                    "first": "Primeiro",
+                    "last": "Último",
+                    "next": "Seguinte",
+                    "previous": "Anterior"
+                },
+                "aria": {
+                    "sortAscending": ": ordem crescente",
+                    "sortDescending": ": ordem decrescente"
+                }
+            }
+
+
+        });
+    })
+</script>
+
+<!-- <script></script> -->
+
 {% endblock %}

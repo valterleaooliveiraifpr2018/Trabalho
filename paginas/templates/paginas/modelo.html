@@ -10,13 +10,21 @@
     {% block titulo %}
     <title>modelo</title>
     {% endblock %}
-
+    <!-- importar bootstrap -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- importar css personalizado -->
     <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}">
+    <!-- importar css de botão -->
     <link rel="stylesheet" href="{% static 'assets/css/Footer-with-button-logo.css' %}">
-
+    <!-- importação ajax awesome-->
     <link rel="stylesheet" href=" http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css ">
     <!-- <link rel="stylesheet" href=" http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css "> -->
+    
+    <!-- importa o css do datateble -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.23/datatables.min.css" />
+    
+    
+
 </head>
 
 <body>
@@ -281,12 +289,14 @@
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/jquery.mask.min.js' %}"></script>
         <script src="{% static 'assets/demo.js' %}"></script>
-        
         <!-- <script src=" https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js "></script> -->
         <!-- <script src=" http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js "></script> -->
         
-        
+        <!-- importa o datatable -->
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.23/datatables.min.js"></script>
+        <!-- bloco designado aos scripts para cada pagina     -->
         {% block script %}
+        
         {% endblock %}
     </div>
 </body>

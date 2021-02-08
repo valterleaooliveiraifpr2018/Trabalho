@@ -10,8 +10,12 @@
     <div class="col-md-8 mx-auto">
         <h2>Pagina inicial</h2>
         <hr>
+
+        {% if user.perfil.nome_completo %}
         <p class="lead"> Bem vindo <span style="color: #4286f4">{{ user.perfil.nome_completo }}</span>.</i></p>
-        
+        {% else %}
+        você, precisa terminar completar seu cadastro, acesse os <a href="{% url 'atualizar' %}">meus dados</a> para atualizar.
+        {% endif %}
         
     </div>
 
